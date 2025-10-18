@@ -190,7 +190,7 @@ namespace Proyecto_C__UNAJ
 
             Console.WriteLine("7. ");
             Console.WriteLine("8.  ");
-            Console.WriteLine("9. ");
+            Console.WriteLine("9. 99999");
             
             Console.WriteLine("0. Salir");
             Console.Write("Seleccione una opción: ");
