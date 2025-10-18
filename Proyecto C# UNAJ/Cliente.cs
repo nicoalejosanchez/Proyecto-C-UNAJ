@@ -26,12 +26,12 @@ namespace Proyecto_C__UNAJ
         //constructores
         public Cliente(string nom, string ape, int dni, string dire, int tel, string mail)
         {
-            this.nombre = nom;
-            this.apellido = ape;    
-            this.dni = dni;
-            this.direccion = dire;
-            this.telefono = tel;
-            this.email = mail;
+            this.Nombre = nom;
+            this.Apellido = ape;    
+            this.Dni = dni;
+            this.Direccion = dire;
+            this.Telefono = tel;
+            this.Email = mail;
         }
 
 
@@ -39,6 +39,7 @@ namespace Proyecto_C__UNAJ
 
         public override string ToString()
         {
+           
             return ($"Nombre: {this.Nombre}, Apellido: {this.Apellido}, DNI: {this.Dni} ");
         }
 

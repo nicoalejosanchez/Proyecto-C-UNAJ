@@ -162,7 +162,9 @@ namespace Proyecto_C__UNAJ
                                     banco.EliminarCliente(clienteBuscado);
                                     Console.WriteLine("El cliente también fue eliminado porq no tener + cuentas.");
                                 }
-
+                                Thread.Sleep(1000);
+                                ImprimirMenu();
+                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
                                 break;
                             }
                         case 3:
@@ -192,7 +194,47 @@ namespace Proyecto_C__UNAJ
                                     }
                                     Console.WriteLine("");
                                 }
+                                Thread.Sleep(1000);
+                                ImprimirMenu();
+                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
                                 break;
+                            }
+                        case 4:
+                            {
+                                
+                                break;
+                            }
+                        case 7:
+                            {
+                                Console.WriteLine("LISTADO DE CUENTAS");
+                                foreach (var cuenta in banco.TodasCuentas())
+                                {
+                                   
+                                    Console.WriteLine( cuenta.ToString() );
+                                    Console.WriteLine();
+                                }
+                                Thread.Sleep(1000);
+                                ImprimirMenu();
+                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
+                                break;
+                            }
+                        case 8:
+                            {
+                                int flagNumeroIncremen = 0;
+                                Console.Clear();
+                                Console.WriteLine("LISTADO DE CLIENTES");
+                                foreach (var cliente in banco.TodosLosClientes())
+                                {
+                                    Console.Write(flagNumeroIncremen+1 + " - ");
+                                    Console.WriteLine(cliente.ToString());
+                                    Console.WriteLine("");
+                                }
+
+
+                                Thread.Sleep(1000);
+                                ImprimirMenu();
+                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
+                                break; 
                             }
                     }
                 }
@@ -211,8 +253,8 @@ namespace Proyecto_C__UNAJ
             Console.WriteLine("5. ");
             Console.WriteLine("6. ");
 
-            Console.WriteLine("7. ");
-            Console.WriteLine("8.  ");
+            Console.WriteLine("7.listado de cuentas ");
+            Console.WriteLine("8. listado de clientes  ");
             Console.WriteLine("9. 99999");
             
             Console.WriteLine("0. Salir");
