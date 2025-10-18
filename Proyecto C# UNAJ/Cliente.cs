@@ -37,5 +37,10 @@ namespace Proyecto_C__UNAJ
 
         //methods
 
+        public override string ToString()
+        {
+            return ($"Nombre: {this.Nombre}, Apellido: {this.Apellido}, DNI: {this.Dni} ");
+        }
+
     }
 }

@@ -136,7 +136,7 @@ namespace Proyecto_C__UNAJ
                                 //busco al cliente en la lista de cuentas 
 
                                 Cliente clienteBuscado = null;
-                                foreach (var cliente in banco.ListaDeClientes)
+                                foreach (var cliente in banco.TodosLosClientes())
                                 {
                                     if (cliente.Dni == cuentaParaEliminar.DniDelTitularDeLaCuenta)
                                     {
@@ -148,7 +148,7 @@ namespace Proyecto_C__UNAJ
                               
                                 //busco si tiene otra cuenta
                                 bool tieneOtraCuenta = false;
-                                foreach (var cuenta in banco.ListaDeCuentas)
+                                foreach (var cuenta in banco.TodasCuentas())
                                 {
                                     if (cuenta.DniDelTitularDeLaCuenta == clienteBuscado.Dni)
                                     {
@@ -167,8 +167,31 @@ namespace Proyecto_C__UNAJ
                             }
                         case 3:
                             {
-                                List <Cliente> listaCompleta = banco.TodosClientes();
+                                //Listado de clientes que tienen más de una cuenta , indicando nro
+                                //de cuenta y saldo de cada una.
 
+                                foreach (var cliente in banco.TodosLosClientes())
+                                {
+                                    List<Cuenta> listaFlagMultiplesCuentas = new List<Cuenta>();
+                                    foreach (var cuenta in banco.TodasCuentas())
+                                    {
+                                        if (cuenta.DniDelTitularDeLaCuenta == cliente.Dni)
+                                        {
+                                            listaFlagMultiplesCuentas.Add(cuenta);
+
+                                        }
+                                    }
+                                    if (listaFlagMultiplesCuentas.Count >1)
+                                    {
+                                        Console.WriteLine(cliente.ToString());
+
+                                        foreach (var cuenta in listaFlagMultiplesCuentas)
+                                        {
+                                            Console.WriteLine($"CBU: {cuenta.Cbu}, Saldo: {cuenta.SaldoDeLaCuenta}");
+                                        }
+                                    }
+                                    Console.WriteLine("");
+                                }
                                 break;
                             }
                     }

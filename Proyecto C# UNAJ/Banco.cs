@@ -26,43 +26,43 @@ namespace Proyecto_C__UNAJ
 
         //Methods.
         //metodos clientes
-        public void AgregarCliente(Cliente unCliente)  //opcion 1
+        public void AgregarCliente(Cliente unCliente)  
             {
                 ListaDeClientes.Add(unCliente); 
             }
-        public void EliminarCliente(Cliente unCliente) //opcion 2
+        public void EliminarCliente(Cliente unCliente) 
             { 
                 ListaDeClientes.Remove(unCliente); 
             }
-        public int CantidadClientes() // opcion 3
+        public int CantidadClientes() 
             {
                 return ListaDeClientes.Count;
             }
-        public bool ExisteCliente(Cliente unCliente) //opcion 4
+        public bool ExisteCliente(Cliente unCliente)
             { 
                 return ListaDeClientes.Contains(unCliente); 
             }
-        public Cliente VerCliente(int i) // opcion 5
+        public Cliente VerCliente(int i) 
             { 
                 return ListaDeClientes[i]; 
             }
-        public List<Cliente> TodosClientes() // opcion 6
+        public List<Cliente> TodosLosClientes() 
             { 
                 return ListaDeClientes; 
             }
 
         //metodos cuenta
-        public void AgregarCuenta(Cuenta unaC)  //7
+        public void AgregarCuenta(Cuenta unaC)  
         { ListaDeCuentas.Add(unaC); }
-        public void EliminarCuenta(Cuenta unaC) //8
+        public void EliminarCuenta(Cuenta unaC) 
         { ListaDeCuentas.Remove(unaC); }
-        public int CantidadCuentas() //9
+        public int CantidadCuentas() 
         { return ListaDeCuentas.Count; }
-        public bool ExisteCuenta(Cuenta unaC) //10
+        public bool ExisteCuenta(Cuenta unaC) 
         { return ListaDeCuentas.Contains(unaC); }
-        public Cuenta VerCuenta(int i) //11
+        public Cuenta VerCuenta(int i) 
         { return ListaDeCuentas[i]; }
-        public List<Cuenta> TodasCuentas() //12
+        public List<Cuenta> TodasCuentas() 
         { return ListaDeCuentas; }
 
 
