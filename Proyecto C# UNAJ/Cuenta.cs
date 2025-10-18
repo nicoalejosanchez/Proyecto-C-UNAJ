@@ -38,9 +38,9 @@ namespace Proyecto_C__UNAJ
         {
 
         }
-        public void DepositarSaldo(double cuantoDeposita)
+        public void DepositarSaldo( double cuantoDeposita)
         {
-            this.SaldoDeLaCuenta += cuantoDeposita;
+            SaldoDeLaCuenta += cuantoDeposita;
         }
 
 

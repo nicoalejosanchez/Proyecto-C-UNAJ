@@ -201,7 +201,34 @@ namespace Proyecto_C__UNAJ
                             }
                         case 4:
                             {
-                                
+                                //Realizar una extracción. En caso de no poseer saldo suficiente se
+                                //debe levantar una excepción que indique lo sucedido(“Saldo insuficiente”)
+
+
+                                break;
+                            }
+                        case 5:
+                            {
+                                //Depositar dinero en una cuenta dada.
+                                Console.Clear();
+                                Console.WriteLine("DEPOSITAR DINERO");
+                                Console.WriteLine("CBU de la cuenta a la que quiere depositar: ");
+                                int cbu = int.Parse(Console.ReadLine());
+
+                                Cuenta cuentaDeDeposito;
+                                foreach(var cuenta in banco.TodasCuentas())
+                                {
+                                    if (cuenta.Cbu == cbu)
+                                    {
+                                        cuentaDeDeposito = cuenta;
+                                    }
+                                }
+
+                                Console.WriteLine("Cuanto $ deposita: ");
+                                double cuantoDeposita = double.Parse(Console.ReadLine());
+
+                                cuentaDeDeposito.DepositarSaldo(cuantoDeposita); //?????????????????????????????????????????? no entendi lo de cuenta dada, si es un obj cuenta o el cbu o q
+
                                 break;
                             }
                         case 7:
@@ -249,13 +276,13 @@ namespace Proyecto_C__UNAJ
             Console.WriteLine("1. Agregar cuenta al banco");
             Console.WriteLine("2. Eliminar cuenta");
             Console.WriteLine("3. Listar clientes con mas de una cuenta");
-            Console.WriteLine("4. ");
+            Console.WriteLine("4. Extraer $ ");
             Console.WriteLine("5. ");
             Console.WriteLine("6. ");
 
             Console.WriteLine("7.listado de cuentas ");
             Console.WriteLine("8. listado de clientes  ");
-            Console.WriteLine("9. 99999");
+            Console.WriteLine("9. ");
             
             Console.WriteLine("0. Salir");
             Console.Write("Seleccione una opción: ");
