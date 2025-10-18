@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Proyecto_C__UNAJ
+{
+    internal class Cliente
+    {
+        //atributos
+        private string nombre;
+        private string apellido;
+        private int dni;
+        private string direccion;
+        private int telefono;
+        private string email;
+        //properties
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }    
+        public int Dni { get; set; }  
+        public string Direccion { get; set;}
+        public int Telefono { get; set;}
+        public string Email { get; set;}    
+        
+        //constructores
+        public Cliente(string nom, string ape, int dni, string dire, int tel, string mail)
+        {
+            this.nombre = nom;
+            this.apellido = ape;    
+            this.dni = dni;
+            this.direccion = dire;
+            this.telefono = tel;
+            this.email = mail;
+        }
+
+
+        //methods
+
+    }
+}
