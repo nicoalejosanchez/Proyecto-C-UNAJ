@@ -115,7 +115,7 @@ namespace Proyecto_C__UNAJ
 
                                 Cuenta cuentaParaEliminar = null;
 
-                                foreach (var cuenta in banco.TodasCuentas())
+                                foreach (var cuenta in banco.())
                                 {
                                     if (cuenta.Cbu == cbuingresado)
                                     {
@@ -125,9 +125,9 @@ namespace Proyecto_C__UNAJ
                                         break;
                                     }
                                 }
-                                if (banco.ExisteCuenta(cuentaParaEliminar) == false)
+                                if (cuentaParaEliminar == null)
                                 {
-                                    Console.WriteLine("No existe la cuenta"); //crear exeption aca
+                                    Console.WriteLine("No se elimnino nada, crear si o si un exption aca"); //crear exeption aca
                                 }
 
                                 //busco al cliente en la lista de cuentas 
@@ -222,7 +222,8 @@ namespace Proyecto_C__UNAJ
 
                                 if (flagCuenta.SaldoDeLaCuenta >= cuanto)
                                 {
-                                    flagCuenta.SaldoDeLaCuenta -= cuanto;
+                                    flagCuenta.ExtraerSaldo(cuanto);
+                                    
                                     Console.WriteLine("flag se retiro correctamente");
                                     Console.WriteLine();
                                     Console.WriteLine($"El nuevo saldo de la cuenta: {flagCuenta.ToString()} es: {flagCuenta.SaldoDeLaCuenta}");
@@ -269,7 +270,34 @@ namespace Proyecto_C__UNAJ
                                 
                             }
 
+                        case 6:
+                            {
+                                //Transferir dinero entre dos cuentas. Validar existencia de saldo
+                                //en la cuenta origen.asdasd
 
+                                Console.Clear();
+                                Console.WriteLine("***  TRANFERENCIA  ****");
+                                Console.WriteLine();
+                                Console.WriteLine("CBU de la cuenta de origen: ");
+                                int cbuOrigen = int.Parse(Console.ReadLine());
+
+                                Cuenta cuentaFlag = null;
+                                foreach (var cuenta in banco.TodasCuentas())
+                                {
+                                    if (cuenta.Cbu == cbuOrigen)
+                                    {
+                                        cuentaFlag = cuenta;
+                                    }
+                                }
+
+                                Console.WriteLine("El saldo de la cuenta de origen es: "+cuentaFlag.SaldoDeLaCuenta);
+
+                                //falta terminar<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+                                break;
+                            }
                         case 7:
                             {
                                 Console.WriteLine("LISTADO DE CUENTAS");

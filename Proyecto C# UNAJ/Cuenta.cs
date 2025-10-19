@@ -34,6 +34,10 @@ namespace Proyecto_C__UNAJ
         {
 
         }
+        public void ExtraerSaldo( double cuantoSaca)
+        {
+            this.SaldoDeLaCuenta -= cuantoSaca;
+        }
         public void DepositarSaldo( double cuantoDeposita)
         {
             SaldoDeLaCuenta += cuantoDeposita;
