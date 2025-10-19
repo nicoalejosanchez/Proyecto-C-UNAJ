@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace Proyecto_C__UNAJ
 {
@@ -115,12 +108,14 @@ namespace Proyecto_C__UNAJ
                             }
                         case 2:
                             {
+                                Console.Clear();
+                                Console.WriteLine(  "---ELIMINAR CUENTA---");
                                 Console.WriteLine("CBU de la cuenta que quiere eliminar: ");
                                 int cbuingresado = int.Parse(Console.ReadLine());
 
                                 Cuenta cuentaParaEliminar = null;
 
-                                foreach (var cuenta in banco.ListaDeCuentas)
+                                foreach (var cuenta in banco.TodasCuentas())
                                 {
                                     if (cuenta.Cbu == cbuingresado)
                                     {
@@ -130,9 +125,9 @@ namespace Proyecto_C__UNAJ
                                         break;
                                     }
                                 }
-                                if (cuentaParaEliminar == null)
+                                if (banco.ExisteCuenta(cuentaParaEliminar) == false)
                                 {
-                                    Console.WriteLine("No se elimnino nada, crear si o si un exption aca"); //crear exeption aca
+                                    Console.WriteLine("No existe la cuenta"); //crear exeption aca
                                 }
 
                                 //busco al cliente en la lista de cuentas 
