@@ -115,7 +115,7 @@ namespace Proyecto_C__UNAJ
 
                                 Cuenta cuentaParaEliminar = null;
 
-                                foreach (var cuenta in banco.())
+                                foreach (var cuenta in banco.TodasCuentas())
                                 {
                                     if (cuenta.Cbu == cbuingresado)
                                     {
@@ -280,22 +280,48 @@ namespace Proyecto_C__UNAJ
                                 Console.WriteLine();
                                 Console.WriteLine("CBU de la cuenta de origen: ");
                                 int cbuOrigen = int.Parse(Console.ReadLine());
-
-                                Cuenta cuentaFlag = null;
+                                Console.Write("CBU de la cuenta de destino: ");
+                                int cbuDestino = int.Parse(Console.ReadLine());
+                                Console.Write("Monto a transferir: ");
+                                double monto = double.Parse(Console.ReadLine());
+                                
+                                // Buscar cuentas en la lista del banco
+                                Cuenta cuentaOrigen = null;
+                                Cuenta cuentaDestino = null;
+                                
                                 foreach (var cuenta in banco.TodasCuentas())
                                 {
                                     if (cuenta.Cbu == cbuOrigen)
+                                        cuentaDestino = cuenta;
+                                    else if (cuenta.Cbu == cbuDestino)
+                                        cuentaDestino = cuenta;
+                                }
+
+                                if (cuentaOrigen == null || cuentaDestino == null)
+                                {
+                                    Console.WriteLine("Error: una o ambas cuentas no existen.");
+                                }
+                                else
+                                {
+                                    // Validar saldo en cuenta de origen
+                                    if (cuentaOrigen.SaldoDeLaCuenta >= monto)
                                     {
-                                        cuentaFlag = cuenta;
+                                        cuentaOrigen.ExtraerSaldo(monto);
+                                        cuentaDestino.DepositarSaldo(monto);
+                                        
+                                        Console.WriteLine("\nTransferencia realizada correctamente.");
+                                        Console.WriteLine($"Nuevo saldo cuenta origen: {cuentaOrigen.SaldoDeLaCuenta}");
+                                        Console.WriteLine($"Nuevo saldo cuenta destino: {cuentaDestino.SaldoDeLaCuenta}");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("\nError: saldo insuficiente en la cuenta de origen.");
                                     }
                                 }
 
-                                Console.WriteLine("El saldo de la cuenta de origen es: "+cuentaFlag.SaldoDeLaCuenta);
-
-                                //falta terminar<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
+                                Thread.Sleep(1000);
+                                ImprimirMenu();
+                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
                                 break;
                             }
                         case 7:
@@ -345,7 +371,7 @@ namespace Proyecto_C__UNAJ
             Console.WriteLine("3. Listar clientes con mas de una cuenta");
             Console.WriteLine("4. Extraer $ ");
             Console.WriteLine("5. Depositar $ ");
-            Console.WriteLine("6. ");
+            Console.WriteLine("6. Transferir dinero entre cuentas");
 
             Console.WriteLine("7.listado de cuentas ");
             Console.WriteLine("8. listado de clientes  ");
