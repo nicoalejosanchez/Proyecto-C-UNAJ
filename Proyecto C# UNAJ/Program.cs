@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -101,11 +101,9 @@ namespace Proyecto_C__UNAJ
                                     cuenta.DepositarSaldo(cuanto);
 
                                 }
-                                Thread.Sleep(1000);
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
-                                break;
-                            }
+                               break;
+                             }
+                    		
                         case 2:
                             {
                                 Console.Clear();
@@ -117,7 +115,7 @@ namespace Proyecto_C__UNAJ
 
                                 foreach (var cuenta in banco.TodasCuentas())
                                 {
-                                    if (cuenta.Cbu == cbuingresado)
+                                	if (cuenta.Cbu ==  cbuingresado.ToString())
                                     {
                                         cuentaParaEliminar = cuenta;
                                         banco.EliminarCuenta(cuentaParaEliminar);
@@ -159,9 +157,7 @@ namespace Proyecto_C__UNAJ
                                     banco.EliminarCliente(clienteBuscado);
                                     Console.WriteLine("El cliente también fue eliminado porq no tener + cuentas.");
                                 }
-                                Thread.Sleep(1000);
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
+                              
                                 break;
                             }
                         case 3:
@@ -186,14 +182,12 @@ namespace Proyecto_C__UNAJ
 
                                         foreach (var cuenta in listaFlagMultiplesCuentas)
                                         {
-                                            Console.WriteLine($"CBU: {cuenta.Cbu}, Saldo: {cuenta.SaldoDeLaCuenta}");
+                                            Console.WriteLine("CBU: {0}, Saldo: {1}", cuenta.Cbu,cuenta.SaldoDeLaCuenta );
                                         }
                                     }
                                     Console.WriteLine("");
                                 }
-                                Thread.Sleep(1000);
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
+                        
                                 break;
                             }
                         case 4:
@@ -207,7 +201,7 @@ namespace Proyecto_C__UNAJ
                                 Cuenta flagCuenta = null;
                                 foreach(var cuenta in banco.TodasCuentas())
                                 {
-                                    if ( cuenta.Cbu == cbu)
+                                	if ( cuenta.Cbu == cbu.ToString())
                                     {
                                         flagCuenta = cuenta;
                                     }
@@ -226,18 +220,13 @@ namespace Proyecto_C__UNAJ
                                     
                                     Console.WriteLine("flag se retiro correctamente");
                                     Console.WriteLine();
-                                    Console.WriteLine($"El nuevo saldo de la cuenta: {flagCuenta.ToString()} es: {flagCuenta.SaldoDeLaCuenta}");
+                                    Console.WriteLine("El nuevo saldo de la cuenta: {0} es: {1}",flagCuenta.ToString(), flagCuenta.SaldoDeLaCuenta);
                                 }
                                 else
                                 {
                                     Console.WriteLine(  "saldo insuficiente"); // tambien hay que crear la exepcion, esta improvisado
                                 }
 
-
-
-
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
                                 break;
 
                             }
@@ -252,7 +241,7 @@ namespace Proyecto_C__UNAJ
                                 Cuenta cuentaDeDeposito = null;
                                 foreach(var cuenta in banco.TodasCuentas())
                                 {
-                                    if (cuenta.Cbu == cbu)
+                                	if (cuenta.Cbu == cbu.ToString())
                                     {
                                         cuentaDeDeposito = cuenta;
                                     }
@@ -263,9 +252,6 @@ namespace Proyecto_C__UNAJ
 
                                 cuentaDeDeposito.DepositarSaldo(cuantoDeposita); //?????????????????????????????????????????? no entendi lo de cuenta dada, si es un obj cuenta o el cbu o q
 
-                                Thread.Sleep(500);
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
                                 break;
                                 
                             }
@@ -291,9 +277,9 @@ namespace Proyecto_C__UNAJ
                                 
                                 foreach (var cuenta in banco.TodasCuentas())
                                 {
-                                    if (cuenta.Cbu == cbuOrigen)
-                                        cuentaDestino = cuenta;
-                                    else if (cuenta.Cbu == cbuDestino)
+                                	if (cuenta.Cbu == cbuOrigen.ToString())
+                                        cuentaOrigen = cuenta;
+                                	else if (cuenta.Cbu == cbuDestino.ToString())
                                         cuentaDestino = cuenta;
                                 }
 
@@ -310,8 +296,8 @@ namespace Proyecto_C__UNAJ
                                         cuentaDestino.DepositarSaldo(monto);
                                         
                                         Console.WriteLine("\nTransferencia realizada correctamente.");
-                                        Console.WriteLine($"Nuevo saldo cuenta origen: {cuentaOrigen.SaldoDeLaCuenta}");
-                                        Console.WriteLine($"Nuevo saldo cuenta destino: {cuentaDestino.SaldoDeLaCuenta}");
+                                        Console.WriteLine("Nuevo saldo cuenta origen: {0}",cuentaOrigen.SaldoDeLaCuenta);
+                                        Console.WriteLine("Nuevo saldo cuenta destino: {0}",cuentaDestino.SaldoDeLaCuenta);
                                     }
                                     else
                                     {
@@ -319,9 +305,6 @@ namespace Proyecto_C__UNAJ
                                     }
                                 }
 
-                                Thread.Sleep(1000);
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
                                 break;
                             }
                         case 7:
@@ -334,8 +317,7 @@ namespace Proyecto_C__UNAJ
                                     Console.WriteLine();
                                 }
                                 Thread.Sleep(1000);
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
+                  
                                 break;
                             }
                         case 8:
@@ -351,13 +333,15 @@ namespace Proyecto_C__UNAJ
                                 }
 
 
-                                Thread.Sleep(1000);
-                                ImprimirMenu();
-                                int.TryParse(Console.ReadLine(), out opcionParaElCase);
                                 break; 
                             }
                     }
+                     
+                     Console.WriteLine();
+        			 ImprimirMenu();
+        			 int.TryParse(Console.ReadLine(), out opcionParaElCase);
                 }
+                
             }
 
 
