@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 
@@ -9,7 +9,7 @@ namespace Proyecto_C__UNAJ
         //atributos
         private string nombre;
         private string apellido;
-        private string dni;
+        private int dni;
         private string direccion;
         private int telefono;
         private string email;
@@ -30,44 +30,39 @@ namespace Proyecto_C__UNAJ
 	        get{return apellido;}
 	        set{apellido = value;}
         }
-	    public string Dni{
-	        get{dni nombre;}
+	    public int Dni{
+	        get{return dni;}
 	        set{dni = value;}
         }
 	    public string Direccion{
-		    get{return direcion;}
+		    get{return direccion;}
 		    set{direccion = value;}
         }
-        public string Mail{
-	        get{return mail;}
-	        set{mail = value;}
+        public string Email{
+	        get{return email;}
+	        set{email = value;}
         }    
-        public int Numero{
-	        get{return numero;}
-	        set{numero = value;}
+        public int Telefono{
+	        get{return telefono;}
+	        set{telefono = value;}
         }
-
-
-        
-        
+ 
         //constructores
-        public Cliente(string nom, string ape, string dni, string dire, int tel, string mail)
+        public Cliente(string nom, string ape, int dni, string dire, int tel, string mail)
         {
             this.Nombre = nom;
             this.Apellido = ape;    
             this.Dni = dni;
             this.Direccion = dire;
             this.Telefono = tel;
-            this.Email = mail;
+            this.Email = email;
         }
-
-
-        //methods
-
+    
+		//methods
         public override string ToString()
         {
            
-            return ($"Nombre: {this.Nombre}, Apellido: {this.Apellido}, DNI: {this.Dni} ");
+            return string.Format ("Nombre: {0}, Apellido: {1}, DNI: {2}",this.Nombre, this.Apellido,this.Dni);
         }
 
     }
