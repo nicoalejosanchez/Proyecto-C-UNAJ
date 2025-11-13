@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Proyecto_C__UNAJ
@@ -8,11 +8,11 @@ namespace Proyecto_C__UNAJ
         private static int numerosDeCbu = 10000; // para que los cbu sean unicos, es un atributo de la clase
 
         //atributos
-        private int cbu;
+        private string cbu;
         private string apellidoDelTitularDeLaCuenta;
         private int dniDelTitularDeLaCuenta;
         private double saldoDeLaCuenta;
-        
+       
         //properties
         /*public int Cbu { get; set; }
         public string ApellidoDelTitularDeLaCuenta { get; set; }
@@ -29,7 +29,7 @@ namespace Proyecto_C__UNAJ
 		    set{apellidoDelTitularDeLaCuenta= value;}
         }
 
-        public string DniDelTitularDeLaCuenta{
+        public int DniDelTitularDeLaCuenta{
 	        get{return dniDelTitularDeLaCuenta;}
 	        set{dniDelTitularDeLaCuenta = value;}
         }
@@ -39,7 +39,6 @@ namespace Proyecto_C__UNAJ
 	        set{saldoDeLaCuenta = value;}
         }
 
-        
         //constructor
         public Cuenta(string apellidoDelTitular, int dniDelTitular, double saldoDeLaCuenta)
         {
@@ -50,7 +49,8 @@ namespace Proyecto_C__UNAJ
             numerosDeCbu++;
             this.cbu = numerosDeCbu.ToString();
         }
-        //Methods
+        
+		//Methods
         public void TranferirSaldo()
         {
 
@@ -64,13 +64,6 @@ namespace Proyecto_C__UNAJ
             SaldoDeLaCuenta += cuantoDeposita;
         }
 
-/*
-        public int CrearCbu() 
-        {
-            return ++numerosDeCbu;
-        }
-*/
-
         public override string ToString()
         {
             return ("CBU: " + this.Cbu +
@@ -80,3 +73,4 @@ namespace Proyecto_C__UNAJ
         }
     }
 }
+
