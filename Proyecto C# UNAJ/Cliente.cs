@@ -42,15 +42,15 @@ namespace Proyecto_C__UNAJ
 		    set { direccion = value; }
 		}   
 		
-        public int Telefono {
+        public string Telefono {
 	        get { return telefono; }
 	        set { telefono = value; }
         }	
 			
-		}
         public string Email {
 	        get { return email; }
 	        set { email = value; }
+		}
         
         //constructores
         public Cliente(string nom, string ape, int dni, string dire, string tel, string mail)
