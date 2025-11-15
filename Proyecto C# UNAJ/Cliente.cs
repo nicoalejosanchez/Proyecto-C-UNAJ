@@ -22,40 +22,45 @@ namespace Proyecto_C__UNAJ
         public int Telefono { get; set;}
         public string Email { get; set;}  */
 
-        public string Nombre{
-		    get{return nombre;}
-		    set{nombre = value;}
+        public string Nombre {
+		    get { return nombre; }
+		    set { nombre = value; }
         }
-        public string Apellido{
-	        get{return apellido;}
-	        set{apellido = value;}
+
+        public string Apellido {
+	        get { return apellido; }
+	        set { apellido = value; }
         }
-	    public int Dni{
-	        get{return dni;}
-	        set{dni = value;}
+	    
+		public int Dni {
+	        get { return dni; }
+	        set { dni = value; }
         }
-	    public string Direccion{
-		    get{return direccion;}
-		    set{direccion = value;}
-        }
-        public string Email{
-	        get{return email;}
-	        set{email = value;}
-        }    
-        public int Telefono{
-	        get{return telefono;}
-	        set{telefono = value;}
-        }
- 
+		
+	    public string Direccion {
+		    get { return direccion; }
+		    set { direccion = value; }
+		}   
+		
+        public int Telefono {
+	        get { return telefono; }
+	        set { telefono = value; }
+        }	
+			
+		}
+        public string Email {
+	        get { return email; }
+	        set { email = value; }
+        
         //constructores
-        public Cliente(string nom, string ape, int dni, string dire, int tel, string mail)
+        public Cliente(string nom, string ape, int dni, string dire, string tel, string mail)
         {
             this.Nombre = nom;
             this.Apellido = ape;    
             this.Dni = dni;
             this.Direccion = dire;
             this.Telefono = tel;
-            this.Email = email;
+            this.Email = mail;
         }
     
 		//methods
