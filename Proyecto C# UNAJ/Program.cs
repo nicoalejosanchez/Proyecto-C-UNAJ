@@ -32,7 +32,15 @@ namespace Proyecto_C__UNAJ
                                 Console.Clear();
                                 Console.WriteLine("___AGREGAR CUENTA___");
                                 Console.WriteLine("Ingrese el DNI del titular de la cuenta: ");
-                                int dni = Int32.Parse(Console.ReadLine());
+
+                                int dni;
+
+                                while (!int.TryParse(Console.ReadLine(), out dni))
+                                {
+                                    Console.WriteLine("Error>>> ingrese un DNI (solo números): ");
+                                }
+
+
                                 bool existe = false;
 
                                 // me fijo si el cliente ya tiene otra cuenta
@@ -69,6 +77,7 @@ namespace Proyecto_C__UNAJ
                                 else
                                 {
                                     Console.WriteLine("---CLIENTE NUEVO---\nCompletar datos para dal de alta nuevo cliente: ");
+                                    Console.WriteLine("  ");
                                     Console.Write("Ingrese nombre: ");
                                     string nombre = Console.ReadLine();
                                     Console.Write("Ingrese apellido: ");
@@ -76,7 +85,18 @@ namespace Proyecto_C__UNAJ
                                     Console.Write("Direccion: ");
                                     string direcc = Console.ReadLine();
                                     Console.Write("Telefono: ");
-                                    int tel = int.Parse(Console.ReadLine());
+
+
+
+                                    int tel;
+                                    while(!int.TryParse(Console.ReadLine(), out tel))
+                                    {
+                                        Console.WriteLine("ingrese un telefo valido: ");
+                                    }
+                                    
+
+
+
                                     Console.Write("E-Mail: ");
                                     string mail = Console.ReadLine();
 
@@ -85,9 +105,9 @@ namespace Proyecto_C__UNAJ
                                     Cliente clienteNuevo = new Cliente(nombre, apellido, dni, direcc, tel, mail);
                                     banco.AgregarCliente(clienteNuevo); /////////////////////metodo agregar cliente
                                     Thread.Sleep(500);
-                                    Console.WriteLine("Flag se creo cliente nuevo");
+                                    Console.WriteLine("  ");
                                     Console.WriteLine("Creando cuenta......");
-
+                                    Console.WriteLine("  ");
                                     int saldo = 0;              //inicio la cuenta con saldo 0
                                     Cuenta cuenta = new Cuenta(apellido, dni, saldo);
                                     Console.WriteLine(cuenta.ToString()); //flag para ver la cuenta
@@ -97,8 +117,20 @@ namespace Proyecto_C__UNAJ
                                   
                                     Console.WriteLine("");
                                     Console.WriteLine("Cuanto $ deposita: ");
-                                    double cuanto = double.Parse(Console.ReadLine());
+
+                                    double cuanto; 
+                                    while (!double.TryParse(Console.ReadLine(),out cuanto))
+                                            {
+                                                  Console.WriteLine("Error. Ingrese un número válido:");
+                                           }
+                                        
                                     cuenta.DepositarSaldo(cuanto);
+
+                                   
+
+
+                                    
+                                    Console.WriteLine("Nuevo saldo en cuenta: {0}", cuenta.SaldoDeLaCuenta);
 
                                 }
                                break;
@@ -109,31 +141,50 @@ namespace Proyecto_C__UNAJ
                                 Console.Clear();
                                 Console.WriteLine(  "---ELIMINAR CUENTA---");
                                 Console.WriteLine("CBU de la cuenta que quiere eliminar: ");
-                                int cbuingresado = int.Parse(Console.ReadLine());
+
+                                int cbuingresado;
+                                while (!int.TryParse(Console.ReadLine(), out cbuingresado))
+                                    {
+                                    Console.WriteLine("Error: ingrese un cbu válido (solo números): ");
+                                }
 
                                 Cuenta cuentaParaEliminar = null;
 
-                                foreach (var cuenta in banco.TodasCuentas())
+                                try
                                 {
-                                	if (cuenta.Cbu ==  cbuingresado.ToString())
+                                    foreach (var cuenta in banco.TodasCuentas())
                                     {
-                                        cuentaParaEliminar = cuenta;
-                                        banco.EliminarCuenta(cuentaParaEliminar);
-                                        Console.WriteLine("Cuenta eliminada");
-                                        break;
+                                        if (cuenta.Cbu == cbuingresado.ToString())
+                                        {
+                                            cuentaParaEliminar = cuenta;
+                                            break; //para qu no siga busacndo
+                                        }
                                     }
+                                    if (cuentaParaEliminar == null)
+                                    {
+                                        throw new CBUNoEncontradoException();
+                                    }
+
+                                    banco.EliminarCuenta(cuentaParaEliminar);
+                                    Console.WriteLine("Cuenta eliminada");
+
+
                                 }
-                                if (cuentaParaEliminar == null)
+                                catch (CBUNoEncontradoException ex)
                                 {
-                                    Console.WriteLine("No se elimnino nada, crear si o si un exption aca"); //crear exeption aca
+                                    Console.WriteLine(ex.Message);
+                                    break;
                                 }
+
+                                
+
 
                                 //busco al cliente en la lista de cuentas 
 
                                 Cliente clienteBuscado = null;
                                 foreach (var cliente in banco.TodosLosClientes())
                                 {
-                                    if (cliente.Dni == cuentaParaEliminar.DniDelTitularDeLaCuenta)
+                                    if (cliente.Dni == cuentaParaEliminar.DniDelTitularDeLaCuenta)  ///esta cuentaParaEliminar me quedo afuera del contecto acutal como la sumo
                                     {
                                         clienteBuscado = cliente;
                                         break; 
@@ -164,7 +215,9 @@ namespace Proyecto_C__UNAJ
                             {
                                 //Listado de clientes que tienen más de una cuenta , indicando nro
                                 //de cuenta y saldo de cada una.
-
+                                Console.Clear();
+                                Console.WriteLine("CLIENTES CON AMS DE UNA CUENTA");
+                                bool hayClientesConMultiples = false;
                                 foreach (var cliente in banco.TodosLosClientes())
                                 {
                                     List<Cuenta> listaFlagMultiplesCuentas = new List<Cuenta>();
@@ -178,12 +231,19 @@ namespace Proyecto_C__UNAJ
                                     }
                                     if (listaFlagMultiplesCuentas.Count >1)
                                     {
+                                        hayClientesConMultiples = true;
                                         Console.WriteLine(cliente.ToString());
 
                                         foreach (var cuenta in listaFlagMultiplesCuentas)
                                         {
                                             Console.WriteLine("CBU: {0}, Saldo: {1}", cuenta.Cbu,cuenta.SaldoDeLaCuenta );
                                         }
+                                        Console.WriteLine("");
+                                    }
+                                    if (!hayClientesConMultiples)
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Todavia no hay clientes con mas de una cuenta");
                                     }
                                     Console.WriteLine("");
                                 }
@@ -197,34 +257,63 @@ namespace Proyecto_C__UNAJ
                                 Console.Clear();
                                 Console.WriteLine("REALIZAR UNA EXTRACCION DE $ ");
                                 Console.WriteLine("CBU de la cuenta que quiere extraer dinero: ");
-                                int cbu = int.Parse(Console.ReadLine());
+                                
+
                                 Cuenta flagCuenta = null;
-                                foreach(var cuenta in banco.TodasCuentas())
-                                {
-                                	if ( cuenta.Cbu == cbu.ToString())
+
+                                try {
+                                    int cbu = int.Parse(Console.ReadLine());
+
+                                    //busca la cuenta con ese cbu
+                                    foreach (var cuenta in banco.TodasCuentas())
                                     {
-                                        flagCuenta = cuenta;
+                                        if (cuenta.Cbu == cbu.ToString())
+                                        {
+                                            flagCuenta = cuenta;
+                                            break; //para que no siga buscando
+                                        }
+                                    }
+
+                                    //si no exite la cuenta tira la exception
+
+                                    if (flagCuenta == null)
+                                    {
+                                        throw new CBUNoEncontradoException("El CBU ingresado no existe");
                                     }
                                 }
-                                if (flagCuenta == null)
+                                catch (CBUNoEncontradoException ex)
                                 {
-                                    Console.WriteLine("CBU no encontrado"); // hay que crar una exeption aca
+                                    Console.WriteLine(ex.Message);
+                                    break; // SALE DEL CASE, no seguir ejecutando
                                 }
+                                catch
+                                {
+                                    Console.WriteLine("Error: CBU inválido."); //si puso letras o algo
+                                    break;
+                                }
+
+                                //aca es si existe el cbu
 
                                 Console.WriteLine("Cuanto $ quiere extrae?: ");
                                 double cuanto = double.Parse(Console.ReadLine());
 
-                                if (flagCuenta.SaldoDeLaCuenta >= cuanto)
+                                //valido saldo
+                                try
                                 {
+                                    if (flagCuenta.SaldoDeLaCuenta < cuanto)
+                                    {
+                                        throw new SaldoInsuficienteException();
+                                    }
                                     flagCuenta.ExtraerSaldo(cuanto);
-                                    
+
                                     Console.WriteLine("flag se retiro correctamente");
                                     Console.WriteLine();
-                                    Console.WriteLine("El nuevo saldo de la cuenta: {0} es: {1}",flagCuenta.ToString(), flagCuenta.SaldoDeLaCuenta);
+                                    Console.WriteLine("El nuevo saldo de la cuenta es: {0}", flagCuenta.SaldoDeLaCuenta);
                                 }
-                                else
+
+                                catch (SaldoInsuficienteException ex)
                                 {
-                                    Console.WriteLine(  "saldo insuficiente"); // tambien hay que crear la exepcion, esta improvisado
+                                    Console.WriteLine(  ex.Message);
                                 }
 
                                 break;
@@ -251,7 +340,7 @@ namespace Proyecto_C__UNAJ
                                 double cuantoDeposita = double.Parse(Console.ReadLine());
 
                                 cuentaDeDeposito.DepositarSaldo(cuantoDeposita); //?????????????????????????????????????????? no entendi lo de cuenta dada, si es un obj cuenta o el cbu o q
-
+                                Console.WriteLine("Nuevo saldo en cuenta: {0}", cuentaDeDeposito.SaldoDeLaCuenta);
                                 break;
                                 
                             }
@@ -309,7 +398,9 @@ namespace Proyecto_C__UNAJ
                             }
                         case 7:
                             {
+                                Console.Clear();
                                 Console.WriteLine("LISTADO DE CUENTAS");
+                                Console.WriteLine("");
                                 foreach (var cuenta in banco.TodasCuentas())
                                 {
                                    
