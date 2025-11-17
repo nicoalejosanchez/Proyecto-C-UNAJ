@@ -20,34 +20,34 @@ namespace Proyecto_C__UNAJ
         public double SaldoDeLaCuenta { get; set; }
         */
         public string Cbu{
-		    get{return cbu;}
-		    set{cbu = value;}
+		    get { return cbu;}
         }
  	
-	    public string ApellidoDelTitularDeLaCuenta{
-		    get{return apellidoDelTitularDeLaCuenta;}
-		    set{apellidoDelTitularDeLaCuenta= value;}
+	    public string ApellidoDelTitularDeLaCuenta {
+		    get { return apellidoDelTitularDeLaCuenta; }
+		    set { apellidoDelTitularDeLaCuenta= value; }
         }
 
-        public int DniDelTitularDeLaCuenta{
-	        get{return dniDelTitularDeLaCuenta;}
-	        set{dniDelTitularDeLaCuenta = value;}
+        public int DniDelTitularDeLaCuenta {
+	        get { return dniDelTitularDeLaCuenta; }
+	        set { dniDelTitularDeLaCuenta = value; }
         }
 
-        public double SaldoDeLaCuenta{
-	        get{return saldoDeLaCuenta;}
-	        set{saldoDeLaCuenta = value;}
+        public double SaldoDeLaCuenta {
+	        get{ return saldoDeLaCuenta; }
+	        set{ saldoDeLaCuenta = value; }
         }
 
         //constructor
-        public Cuenta(string apellidoDelTitular, int dniDelTitular, double saldoDeLaCuenta)
+        public Cuenta(string apellidoDelTitular, int dniDelTitular, double saldoInicial)
         {
             //this.Cbu = CrearCbu();
+			numerosDeCbu++;
+            cbu = numerosDeCbu.ToString();
+			
             this.ApellidoDelTitularDeLaCuenta = apellidoDelTitular;
             this.DniDelTitularDeLaCuenta = dniDelTitular;
-            this.SaldoDeLaCuenta = saldoDeLaCuenta;
-            numerosDeCbu++;
-            this.cbu = numerosDeCbu.ToString();
+            this.SaldoDeLaCuenta = saldoInicial;
         }
         
 		//Methods
@@ -55,13 +55,17 @@ namespace Proyecto_C__UNAJ
         {
 
         }
-        public void ExtraerSaldo( double cuantoSaca)
+        public void ExtraerSaldo(double monto)
         {
-            this.SaldoDeLaCuenta -= cuantoSaca;
+            if (monto <= SaldoDeLaCuenta)
+                SaldoDeLaCuenta -= monto;
+            else
+                throw new Exception("Saldo insuficiente");
         }
-        public void DepositarSaldo( double cuantoDeposita)
+		
+        public void DepositarSaldo(double monto)
         {
-            SaldoDeLaCuenta += cuantoDeposita;
+            SaldoDeLaCuenta += monto;
         }
 
         public override string ToString()
