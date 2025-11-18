@@ -80,15 +80,29 @@ namespace Proyecto_C__UNAJ
                                 {
                                     Console.WriteLine("---CLIENTE NUEVO---\nCompletar datos para dal de alta nuevo cliente: ");
                                     Console.WriteLine("  ");
-                                    Console.Write("Ingrese nombre: ");
-                                    string nombre = Console.ReadLine();
-                                    Console.Write("Ingrese apellido: ");
-                                    string apellido = Console.ReadLine();
-                                    Console.Write("Direccion: ");
-                                    string direcc = Console.ReadLine();
+                                    
+                                    string nombre;
+                                 
+                                    string apellido;
+                                    string direcc;
+                                    try{
+                                    	Console.Write("Nombre: ");
+                                    	nombre = Console.ReadLine();
+                                    	
+                                    	ValidarLetra(nombre);
+                                    	
+                                    	Console.Write("Apellido: ");
+                                    	apellido = Console.ReadLine();
+                                    	
+                                    	ValidarLetra(apellido);
+                                    	
+                                    	Console.Write("Direccion: ");
+                                    	direcc = Console.ReadLine();
+                                    	
+                                    	ValidarLetra(direcc);
+                                    
+                              
                                     Console.Write("Telefono: ");
-
-
 
                                     int tel;
                                     while(!int.TryParse(Console.ReadLine(), out tel))
@@ -113,9 +127,8 @@ namespace Proyecto_C__UNAJ
                                     Console.WriteLine(cuenta.ToString()); //flag para ver la cuenta
                                     banco.AgregarCuenta(cuenta);
                                     Console.WriteLine("\nCUENTA CREADA CON EXITO.");
-
-                                  
-                                    Console.WriteLine("");
+                                    
+                                     Console.WriteLine("");
                                     Console.WriteLine("Cuanto $ deposita: ");
 
                                     double cuanto; 
@@ -126,11 +139,22 @@ namespace Proyecto_C__UNAJ
                                         
                                     cuenta.DepositarSaldo(cuanto);
 
-                                   
-
-
                                     
                                     Console.WriteLine("Nuevo saldo en cuenta: {0}", cuenta.SaldoDeLaCuenta);
+                                    }
+                                    catch (CaracterInvalidoException ex)
+    									{
+       										 // Aquí cae si ValidarLetra encuentra un número o símbolo
+    										 Console.WriteLine("ERROR: " + ex.Message);
+       										 Console.WriteLine("Volviendo al menú principal...");
+    									}
+    								catch (Exception ex)
+    									{
+     										  Console.WriteLine("Error inesperado: " + ex.Message);
+   										}
+                                    
+                                  
+                                   
 
                                 }
                                break;
@@ -470,7 +494,24 @@ namespace Proyecto_C__UNAJ
 
         }
 
-        
+        public static void ValidarLetra(string b)
+		{
+   			 // Valida si es nulo o vacío
+   			 if (b == null || b == "")
+    		{
+        		throw new CaracterInvalidoException();
+   			 }
+
+    		
+    		foreach (char c in b)
+    		{
+        		
+        		if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == ' '))
+        		{
+            		throw new CaracterInvalidoException();
+        		}
+    		}
+		}
 
     }
 }
