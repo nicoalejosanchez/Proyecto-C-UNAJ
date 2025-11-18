@@ -14,13 +14,6 @@ namespace Proyecto_C__UNAJ
         private int telefono;
         private string email;
        
-        //properties
-       /* public string Nombre { get; set; }
-        public string Apellido { get; set; }    
-        public int Dni { get; set; }  
-        public string Direccion { get; set;}
-        public int Telefono { get; set;}
-        public string Email { get; set;}  */
 
         public string Nombre {
 		    get { return nombre; }
