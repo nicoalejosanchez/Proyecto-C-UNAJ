@@ -13,12 +13,6 @@ namespace Proyecto_C__UNAJ
         private int dniDelTitularDeLaCuenta;
         private double saldoDeLaCuenta;
        
-        //properties
-        /*public int Cbu { get; set; }
-        public string ApellidoDelTitularDeLaCuenta { get; set; }
-        public int DniDelTitularDeLaCuenta { get; set; }
-        public double SaldoDeLaCuenta { get; set; }
-        */
         public string Cbu{
 		    get { return cbu;}
         }
