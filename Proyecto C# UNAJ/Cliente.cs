@@ -53,7 +53,7 @@ namespace Proyecto_C__UNAJ
 		}
         
         //constructores
-        public Cliente(string nom, string ape, int dni, string dire, string tel, string mail)
+        public Cliente(string nom, string ape, int dni, string dire, string tel, string email)
         {
             this.Nombre = nom;
             this.Apellido = ape;    
