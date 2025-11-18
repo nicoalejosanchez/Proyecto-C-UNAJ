@@ -26,6 +26,9 @@ namespace Proyecto_C__UNAJ
     {
         public DepositoInvalidoException() : base("DepositoInvalido"){ }
     }
-
+     internal class CaracterInvalidoException : Exception
+    {
+    	public CaracterInvalidoException() : base("Este valor no es válido (solo se permiten letras).") { }
+    }
 
 }
