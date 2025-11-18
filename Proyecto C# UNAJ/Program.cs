@@ -12,8 +12,10 @@ namespace Proyecto_C__UNAJ
             ImprimirMenu();
 
             int opcionParaElCase;
+            int maximo =  8;
+            int minimo = 0;
 
-            if (int.TryParse(Console.ReadLine(), out opcionParaElCase)) 
+            if (int.TryParse(Console.ReadLine(), out opcionParaElCase) || opcionParaElCase > minimo || opcionParaElCase < maximo ) 
             {
                 while (opcionParaElCase != 0)
                 {
@@ -94,8 +96,6 @@ namespace Proyecto_C__UNAJ
                                         Console.WriteLine("ingrese un telefo valido: ");
                                     }
                                     
-
-
 
                                     Console.Write("E-Mail: ");
                                     string mail = Console.ReadLine();
@@ -295,7 +295,11 @@ namespace Proyecto_C__UNAJ
                                 //aca es si existe el cbu
 
                                 Console.WriteLine("Cuanto $ quiere extrae?: ");
-                                double cuanto = double.Parse(Console.ReadLine());
+                                double cuanto;
+                                 while (!double.TryParse(Console.ReadLine(),out cuanto))
+                                            {
+                                                  Console.WriteLine("Error. Ingrese un valor válido:");
+                                           }
 
                                 //valido saldo
                                 try
@@ -306,7 +310,7 @@ namespace Proyecto_C__UNAJ
                                     }
                                     flagCuenta.ExtraerSaldo(cuanto);
 
-                                    Console.WriteLine("flag se retiro correctamente");
+                                    Console.WriteLine("monto se retiro correctamente");
                                     Console.WriteLine();
                                     Console.WriteLine("El nuevo saldo de la cuenta es: {0}", flagCuenta.SaldoDeLaCuenta);
                                 }
@@ -337,7 +341,12 @@ namespace Proyecto_C__UNAJ
                                 }
 
                                 Console.WriteLine("Cuanto $ deposita: ");
-                                double cuantoDeposita = double.Parse(Console.ReadLine());
+                                double cuantoDeposita;
+                        
+                                while (!double.TryParse(Console.ReadLine(),out cuantoDeposita))
+                                            {
+                                                  Console.WriteLine("Error. Ingrese un valor válido:");
+                                           }
 
                                 cuentaDeDeposito.DepositarSaldo(cuantoDeposita); //?????????????????????????????????????????? no entendi lo de cuenta dada, si es un obj cuenta o el cbu o q
                                 Console.WriteLine("Nuevo saldo en cuenta: {0}", cuentaDeDeposito.SaldoDeLaCuenta);
@@ -358,7 +367,11 @@ namespace Proyecto_C__UNAJ
                                 Console.Write("CBU de la cuenta de destino: ");
                                 int cbuDestino = int.Parse(Console.ReadLine());
                                 Console.Write("Monto a transferir: ");
-                                double monto = double.Parse(Console.ReadLine());
+                                double monto;
+                                while (!double.TryParse(Console.ReadLine(), out monto))
+                                {
+                                    Console.WriteLine("Error>>> ingrese monto valido (solo números): ");
+                                }
                                 
                                 // Buscar cuentas en la lista del banco
                                 Cuenta cuentaOrigen = null;
@@ -458,8 +471,6 @@ namespace Proyecto_C__UNAJ
         }
 
         
-
-
 
     }
 }
