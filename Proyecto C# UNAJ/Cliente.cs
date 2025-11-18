@@ -53,7 +53,7 @@ namespace Proyecto_C__UNAJ
             this.Dni = dni;
             this.Direccion = dire;
             this.Telefono = tel;
-            this.Email = mail;
+            this.Email = email;
         }
     
 		//methods

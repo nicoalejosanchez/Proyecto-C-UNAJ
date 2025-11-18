@@ -164,6 +164,13 @@ namespace Proyecto_C__UNAJ
                             {
                                 Console.Clear();
                                 Console.WriteLine(  "---ELIMINAR CUENTA---");
+                                Console.WriteLine(  "Muestro las cuentas. ");
+                                foreach (var cuenta in banco.TodasCuentas())
+                                {
+
+                                    Console.WriteLine(cuenta.ToString());
+                                    Console.WriteLine();
+                                }
                                 Console.WriteLine("CBU de la cuenta que quiere eliminar: ");
 
                                 int cbuingresado;
