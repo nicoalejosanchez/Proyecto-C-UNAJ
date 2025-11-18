@@ -42,7 +42,7 @@ namespace Proyecto_C__UNAJ
 		    set { direccion = value; }
 		}   
 		
-        public string Telefono {
+        public int Telefono {
 	        get { return telefono; }
 	        set { telefono = value; }
         }	
@@ -53,7 +53,7 @@ namespace Proyecto_C__UNAJ
 		}
         
         //constructores
-        public Cliente(string nom, string ape, int dni, string dire, string tel, string email)
+        public Cliente(string nom, string ape, int dni, string dire, int tel, string email)
         {
             this.Nombre = nom;
             this.Apellido = ape;    
